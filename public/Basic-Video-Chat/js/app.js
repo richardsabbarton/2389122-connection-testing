@@ -21,9 +21,12 @@ function initialiseMediaDevices(){
     let deviceSelection = document.getElementById("deviceselection")
     let cameraSelect = document.createElement("select")
     let micSelect = document.createElement("select")
+    let audioOutSelect = document.createElement("select")
+    
 
     cameraSelect.classList.add("deviceselect")
     micSelect.classList.add("deviceselect")
+    audioOutSelect.classList.add("deviceselect")
     
     cameraSelect.onchange = ()=>{
         if(test.publishing)
@@ -34,7 +37,14 @@ function initialiseMediaDevices(){
     micSelect.onchange = ()=>{
         if(test.publishing)
             log("selecting audio device: " + micSelect.value)
-            test.publisher.setVideoSource(micSelect.value)
+            test.publisher.setAudioSource(micSelect.value)
+    }
+
+    audioOutSelect.onchange = ()=>{
+        if(test.publishing)
+            log("selecting audio output device: " + audioOutSelect.value)
+            test.outputDeviceId = audioOutSelect.value
+            OT.subscribers.map(e=>e).forEach(s=>{s.element.childNodes[0].childNodes[2].setSinkId(test.outputDeviceId)})
     }
 
     navigator.mediaDevices.enumerateDevices()
@@ -44,29 +54,27 @@ function initialiseMediaDevices(){
                 log("VIDEO IN: " + i.label)
                 let o = document.createElement("option")
                 o.value = i.deviceId
-                o.innerHTML = i.label
-
-                
-
+                o.innerHTML = "Camera: " + i.label
                 cameraSelect.appendChild(o)
             }
             if(i.kind == "audioinput" && i.deviceId != "default"){
                 log("AUDIO IN: " + i.label)
                 let o = document.createElement("option")
                 o.value = i.deviceId
-                o.innerHTML = i.label
-
-                o.onchange = ()=>{
-                    if(test.publishing)
-                        log("selecting audio device: " + i.deviceId)
-                        test.publisher.setAudioSource(i.deviceId)
-                }
-
+                o.innerHTML = "Audio In: " + i.label
                 micSelect.appendChild(o)
+            }
+            if(i.kind == "audiooutput") {
+                log("AUDIO OUT: " + i.label)
+                let o = document.createElement("option")
+                o.value = i.deviceId
+                o.innerHTML = "Audio Out: " + i.label
+                audioOutSelect.appendChild(o)
             }
         })
         deviceSelection.appendChild(cameraSelect)
         deviceSelection.appendChild(micSelect)
+        deviceSelection.appendChild(audioOutSelect)
     })
 
 }
