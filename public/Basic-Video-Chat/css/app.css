@@ -1,0 +1,57 @@
+body, html {
+    background-color: rgb(231, 211, 211);
+    height: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#videos {
+    margin-left: auto;
+    margin-right: auto;
+}
+#subscriber {
+    width: 320px;
+    height: 180px;
+    z-index: 10;
+}
+#publisher {
+    width: 360px;
+    height: 240px;
+    border: 3px solid white;
+    border-radius: 3px;
+}
+
+.sessioncredentialsdisplay {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    width: 800px;
+    overflow-wrap: anywhere;
+}
+
+.logs {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+    width: 800px;
+    height: 100%;
+    background-color: black;
+    color: greenyellow;
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overflow-wrap: anywhere;
+}
+
+.btn {
+    font-size: small;
+    padding: 8px;
+    margin: 3px;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 12px;
+    background-color: paleturquoise;
+    font-weight: bold;
+}
+
+.deviceselect {
+    font-size: small;
+    padding: 3px;
+    margin: 3px;
+}

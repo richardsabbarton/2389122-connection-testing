@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> OpenTok Getting Started </title>
+        <link href="css/app.css" rel="stylesheet" type="text/css">
+        <script src="https://static.opentok.com/v2.25/js/opentok.min.js"></script>
+    </head>
+    <body>
+        <div id="controls" class="controls">
+            API Key: <select id="selectapikey" class="deviceselect">
+                <option value="47807831" default>47807831 - Default Configuration</option>
+                <option value="47654161" default>47654161 - Configurable TURN + resolveHostnames</option>
+                <option value="47812401" default>47812401 - UDP Only - No TCP/TLS</option>
+                <option value="47812441" default>47812441 - TCP Only - No UDP/TLS</option>
+                <option value="47812451" default>47812451 - TLS Only - No UDP/TCP</option>
+                <option value="47812461" default>47812461 - Custom (hybrid: false; resolveHostnames: true; candidates: relayed only)</option>
+                
+            </select>
+            Room Name: <input class="deviceselect" type="text" id="textroomname" value="default-room-name">
+
+            <br>
+
+            <div id="deviceselection"></div>
+
+            <br>
+
+            <button class="btn" onclick="getSessionCredentials();">Get Session Credentials</button>
+            <button class="btn" onclick="initializeSession();">Connect Session</button>
+            <button class="btn" onclick="publishStream();">Publish Stream</button>
+            <button class="btn" onclick="getRTCStatsReport();">Get RTC Stats</button>
+
+        </div>
+        <div id="videos">
+            <div id="subscriber"></div>
+            <div id="publisher"></div>
+        </div>
+
+        <div id="logs" class="logs">
+            <div></div>
+        </div>
+        <script type="text/javascript" src="js/app.js"></script>
+    </body>
+</html>
